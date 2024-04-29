@@ -43,6 +43,9 @@ const selectedKeys = ref<string[]>(['1']);
 const collapsed = ref<boolean>(false);
 const router = useRouter();
 
+const routes = useRouter().getRoutes();
+
+console.log(routes)
 const backHome = () => {
   router.push('/not');
 }

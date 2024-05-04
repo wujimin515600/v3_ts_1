@@ -6,14 +6,14 @@ export const useTokenStore = defineStore(
   () => {
     const token = ref('')
 
-    const getToken = (str: string) => {
+    const setToken = (str: string) => {
       token.value = str
     }
 
     const removeToken = () => {
       token.value = ''
     }
-    return { token, getToken, removeToken }
+    return { token, setToken, removeToken }
   },
   {
     persist: {

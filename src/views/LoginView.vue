@@ -37,6 +37,8 @@
 <script lang="ts" setup>
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import {useTokenStore } from '@/stores/userStore'
+import { useRouter } from 'vue-router';
 interface FormState {
     username: string;
     password: string;
@@ -47,12 +49,17 @@ const formState = reactive<FormState>({
     password: '',
     remember: true,
 });
+const useToken = useTokenStore();
+const router = useRouter()
 const onFinish = (values: any) => {
     console.log('Success:', values);
+    useToken.setToken('12345')
+    router.push({path: '/'})
 };
 
 const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
+    
 };
 const disabled = computed(() => {
     return !(formState.username && formState.password);

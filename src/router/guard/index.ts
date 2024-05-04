@@ -1,9 +1,13 @@
 import type { Router } from 'vue-router'
+import {useTokenStore } from '@/stores/userStore'
 
 export const setPageGuard = (router: Router) => {
-  const isAuthenticated: boolean = false
+  // const userToken = useTokenStore(); // 在这使用pinia会报实例没有挂在的错误
+
+  // const isAuthenticated: boolean = false
   router.beforeEach((to, from, next) => {
-    if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
+      const {token} = useTokenStore();
+    if (to.name !== 'Login' && (!token || token.length === 0)) next({ name: 'Login' })
     else next()
   })
 }

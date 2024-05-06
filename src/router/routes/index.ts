@@ -18,7 +18,7 @@ const LayoutRouter: RouteRecordRaw[] = [
         component: HView,
         meta: {
           title: '控制台',
-          icon: 'ant-design:dashboard-outlined'
+          icon: 'HomeTwoTone'
         }
       },
       {
@@ -27,7 +27,7 @@ const LayoutRouter: RouteRecordRaw[] = [
         component: AboutView,
         meta: {
           title: '关于',
-          icon: 'ant-design:dashboard-outlined'
+          icon: 'GoldTwoTone'
         }
       }
     ]

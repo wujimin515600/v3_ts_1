@@ -1,13 +1,15 @@
 <template>
   <a-menu-item :key="Item.path" @click="handleMenuClick(Item)">
     <!-- <user-outlined /> -->
-    <component :is="$antIcons[Item?.meta?.icon]"></component>
+    <component :is="$antdIcons[ Item.meta?.icon ?? 'BulbTwoTone']"></component>
     <span>{{Item.name}}</span>
   </a-menu-item>
 </template>
 <script setup lang="ts">
 import { type PropType } from 'vue'
 import { useRouter, type RouteRecordRaw } from 'vue-router';
+import useGlobelProperties from '@/utils/useGlobelProperties'
+
 
 const props = defineProps({
     Item: {
@@ -22,5 +24,7 @@ const handleMenuClick = (item: {
 }) => {
     router.push({ path: item.path });
 }
+
+const { $antdIcons } = useGlobelProperties()
 </script>
 <style scoped></style>

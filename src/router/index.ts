@@ -1,7 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
+import UserView from '@/views/user/UserHome.vue'
 import { basicRoutes } from './routes'
 import {setPageGuard} from './guard'
+import { addChildrenRoute } from '@/utils/addRouter'
 // console.log('basic', basicRoutes)
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,6 +12,23 @@ const router = createRouter({
   strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 })
 })
+
+
+const UserRouter: RouteRecordRaw[] = [
+  {
+    path: 'user',
+    name: 'User',
+    component: UserView,
+    children: [],
+    meta: {
+      title: '用户管理',
+      icon: 'UserOutlined'
+    }
+  }
+]
+
+addChildrenRoute(router, '/', UserRouter[0])
+
 
 setPageGuard(router)
 export default router

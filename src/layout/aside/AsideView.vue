@@ -15,7 +15,6 @@ import { useRouter } from 'vue-router';
 import MenuItem from './MenuItem.vue'
 const selectedKeys = ref<string[]>(['1']);
   const router = useRouter();
-
   const routes = useRouter().getRoutes().filter((item) => item.name === 'Layout')[0]?.children;
 </script>
 <style scoped></style>

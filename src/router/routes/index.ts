@@ -13,7 +13,7 @@ const LayoutRouter: RouteRecordRaw[] = [
     component: HomeView,
     children: [
       {
-        path: '/home',
+        path: 'home',
         name: 'Home',
         component: HView,
         meta: {
@@ -22,7 +22,7 @@ const LayoutRouter: RouteRecordRaw[] = [
         }
       },
       {
-        path: '/about',
+        path: 'about',
         name: 'About',
         component: AboutView,
         meta: {
@@ -57,20 +57,10 @@ const NotFoundRouter: RouteRecordRaw[] = [
   }
 ]
 
-// const AboutRouter: RouteRecordRaw[] = [
-//   {
-//     path: '/about',
-//     name: '关于',
-//     component: AboutView,
-//     meta: {
-//       title: '关于',
-//       icon: 'ant-design:dashboard-outlined'
-//     }
-//   }
-// ]
+
 export const basicRoutes: RouteRecordRaw[] = [
   ...LayoutRouter,
   ...LoginRouter,
   ...NotFoundRouter,
-  // ...AboutRouter
+  // ...UserRouter
 ]

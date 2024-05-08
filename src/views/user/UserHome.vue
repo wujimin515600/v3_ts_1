@@ -1,8 +1,8 @@
 <template>
-<div>用户管理</div>
+<TableView />
 </template>
 <script setup lang="ts">
-import {ref,reactive} from "vue"
+import TableView from '@/components/TableView.vue'
 
 </script>
 <style scoped>

@@ -21,6 +21,7 @@ declare module 'vue' {
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     AResult: typeof import('ant-design-vue/es')['Result']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
+    ATable: typeof import('ant-design-vue/es')['Table']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']

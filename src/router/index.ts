@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 import UserView from '@/views/user/UserHome.vue'
+import addUserView from '@/views/user/UserAdd.vue'
 import { basicRoutes } from './routes'
 import {setPageGuard} from './guard'
 import { addChildrenRoute } from '@/utils/addRouter'
@@ -18,8 +19,28 @@ const UserRouter: RouteRecordRaw[] = [
   {
     path: 'user',
     name: 'User',
-    component: UserView,
-    children: [],
+    // component: UserView,
+    // redirect: '/user',
+    children: [
+      {
+        path: 'userlist',
+        name: 'UserList',
+        component: UserView,
+        meta: {
+          title: '用户列表',
+          icon: 'UserOutlined'
+        }
+      },
+      {
+        path: 'adduser',
+        name: 'AddUser',
+        component: addUserView,
+        meta: {
+          title: '添加用户',
+          icon: 'UsergroupAddOutlined'
+        }
+      }
+    ],
     meta: {
       title: '用户管理',
       icon: 'UserOutlined'

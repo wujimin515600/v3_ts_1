@@ -57,10 +57,9 @@ const NotFoundRouter: RouteRecordRaw[] = [
   }
 ]
 
-
 export const basicRoutes: RouteRecordRaw[] = [
   ...LayoutRouter,
   ...LoginRouter,
-  ...NotFoundRouter,
+  ...NotFoundRouter
   // ...UserRouter
 ]

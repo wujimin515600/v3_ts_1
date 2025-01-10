@@ -1,24 +1,25 @@
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import { defineStore } from 'pinia'
+import type { User } from '@/utils'
 
-export const useTokenStore = defineStore(
-  'token',
+export const useUserStore = defineStore(
+  'user',
   () => {
-    const token = ref('')
+    const data = reactive({
+      user: {}
+    })
 
-    const setToken = (str: string) => {
-      token.value = str
+    const setUser = (item: User) => {
+      data.user = item
     }
 
-    const removeToken = () => {
-      token.value = ''
+    const removeUser = () => {
+      data.user = {}
     }
-    return { token, setToken, removeToken }
+
+    return { data, setUser, removeUser }
   },
   {
-    persist: {
-      key: 'token', //设置存储的key
-      storage: localStorage //表示存储在localStorage
-    }
+    persist: true
   }
 )

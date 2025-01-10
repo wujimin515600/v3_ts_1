@@ -2,8 +2,9 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 import UserView from '@/views/user/UserHome.vue'
 import addUserView from '@/views/user/UserAdd.vue'
+import temlateView from '@/views/base/BaseModule.vue'
 import { basicRoutes } from './routes'
-import {setPageGuard} from './guard'
+import { setPageGuard } from './guard'
 import { addChildrenRoute } from '@/utils/addRouter'
 // console.log('basic', basicRoutes)
 const router = createRouter({
@@ -13,7 +14,6 @@ const router = createRouter({
   strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 })
 })
-
 
 const UserRouter: RouteRecordRaw[] = [
   {
@@ -48,8 +48,30 @@ const UserRouter: RouteRecordRaw[] = [
   }
 ]
 
-addChildrenRoute(router, '/', UserRouter[0])
+const templateRouter: RouteRecordRaw[] = [
+  {
+    path: 'base',
+    name: 'Base',
+    children: [
+      {
+        path: 'temlate',
+        name: 'temlate',
+        component: temlateView,
+        meta: {
+          title: '模块列表',
+          icon: 'UserOutlined'
+        }
+      }
+    ],
+    meta: {
+      title: '基础模块',
+      icon: 'UserOutlined'
+    }
+  }
+]
 
+addChildrenRoute(router, '/', UserRouter[0])
+addChildrenRoute(router, '/', templateRouter[0])
 
 setPageGuard(router)
 export default router

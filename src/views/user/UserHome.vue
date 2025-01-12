@@ -1,21 +1,23 @@
 <template>
-  <!-- <template v-if="data.user.length > 0">  -->
-    <TableView  :data="data.user" />
-  <!-- </template> -->
+  <TableView />
   
 </template>
 <script setup lang="ts">
 import TableView from '@/components/TableView.vue'
 import { getUser } from '@/api'
-import { reactive } from 'vue'
-// import type { User } from '@/utils'
+import { onMounted, provide, ref } from 'vue'
+import type { User } from '@/utils'
 
-const data = reactive({ user: [] })
-const getData = async () => {
-  const res = await getUser({});
-  (data.user as unknown) = res;
-  console.log(res, data.user, data.user.length > 0)
+interface Response {
+  items: User[];
 }
-getData()
+
+const list = ref<User[]>([]);
+provide('userTableData', list);
+onMounted(async() => {
+  const res: Response = await getUser({}) as Response;
+  list.value = res.items;
+});
+
 </script>
 <style scoped></style>

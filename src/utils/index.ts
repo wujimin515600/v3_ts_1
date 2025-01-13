@@ -15,3 +15,8 @@ export interface HeaderRightMenu {
   path: string | undefined
   type: string
 }
+
+export interface MenuItemInfo {
+  keyPath: string[];
+  key: string;
+}

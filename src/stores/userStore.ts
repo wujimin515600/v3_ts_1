@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import type { User } from '@/utils'
 
 export const useUserStore = defineStore(
-  'user',
+  'v3_ts_1_user',
   () => {
     const data = reactive({
       user: {}

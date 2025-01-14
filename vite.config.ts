@@ -35,10 +35,14 @@ export default defineConfig(({ mode}) => {
   console.log('mode', mode, env)
   return {
     base: env.VITE_PUBLIC_PATH, // 这里设置部署根目录
+    // build: {
+    //   assetsInlineLimit: 0, // 禁止内联任何静态资源
+    // },
     plugins: [
       vue(),
       viteMockServe({
         mockPath: 'mock', // 设置模拟数据的文件夹路径
+        enable: true,
       }),
       VueDevTools(),
       Components({

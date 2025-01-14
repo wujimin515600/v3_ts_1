@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
+// import { loadEnv } from 'vite'
 import UserView from '@/views/user/UserHome.vue'
 import addUserView from '@/views/user/UserAdd.vue'
 import temlateView from '@/views/base/BaseModule.vue'
 import { basicRoutes } from './routes'
 import { setPageGuard } from './guard'
 import { addChildrenRoute } from '@/utils/addRouter'
-// console.log('basic', basicRoutes)
+// console.log('basic', import.meta.env.BASE_URL)
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: basicRoutes,

@@ -6,7 +6,9 @@ export const useUserStore = defineStore(
   'v3_ts_1_user',
   () => {
     const data = reactive({
-      user: {}
+      user: {
+        token: ''
+      }
     })
 
     const setUser = (item: User) => {
@@ -14,7 +16,7 @@ export const useUserStore = defineStore(
     }
 
     const removeUser = () => {
-      data.user = {}
+      data.user = { token: ''}
     }
 
     return { data, setUser, removeUser }

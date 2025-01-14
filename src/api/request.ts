@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { message } from 'ant-design-vue'
-import QS from 'qs'
+// import QS from 'qs'
 import { useUserStore } from '@/stores/userStore'
 
 // const baseURL: string = 'http://127.0.0.1'

@@ -13,11 +13,9 @@
   </a-table>
 </template>
 <script lang="ts" setup>
-import { inject } from 'vue';
-
+import { inject } from 'vue'
 
 import { type User } from '@/utils'
-
 
 const columns = [
   {
@@ -33,10 +31,9 @@ const columns = [
     title: '头像',
     dataIndex: 'avatar'
   }
-];
+]
 
-const tableData = inject<User[]>('userTableData');
-
+const tableData = inject<User[]>('userTableData')
 </script>
 <style scoped>
 th.column-money,

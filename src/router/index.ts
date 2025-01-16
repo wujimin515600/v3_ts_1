@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 // import { loadEnv } from 'vite'
 import UserView from '@/views/user/UserHome.vue'
@@ -9,7 +9,8 @@ import { setPageGuard } from './guard'
 import { addChildrenRoute } from '@/utils/addRouter'
 // console.log('basic', import.meta.env.BASE_URL)
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // createWebHistory
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: basicRoutes,
   // 是否应该禁止尾部斜杠。默认为假
   strict: true,

@@ -34,7 +34,7 @@ export default defineConfig(({ mode}) => {
   const env = loadEnv(mode, process.cwd())
   console.log('mode', mode, env)
   return {
-    // base: env.VITE_PUBLIC_PATH, // 这里设置部署根目录
+    base: env.VITE_PUBLIC_PATH, // 这里设置部署根目录
     // build: {
     //   assetsInlineLimit: 0, // 禁止内联任何静态资源
     // },

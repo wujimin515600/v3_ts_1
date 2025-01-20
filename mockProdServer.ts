@@ -1,6 +1,6 @@
 //  mockProdServer.ts
 
-import { createProdMockServer } from 'vite-plugin-mock/client'
+import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
 
 // 逐一导入您的mock.ts文件
 // 如果使用vite.mock.config.ts，只需直接导入文件
@@ -8,5 +8,6 @@ import { createProdMockServer } from 'vite-plugin-mock/client'
 import mocks from './mock'
 
 export function setupProdMockServer() {
+  // console.log('mock')
   createProdMockServer([...mocks])
 }

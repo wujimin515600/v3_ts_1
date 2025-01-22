@@ -37,7 +37,7 @@ service.interceptors.response.use(
     // 对响应数据做处理，例如只返回data部分
     const res = response.data
     if (res.code !== 200) {
-      message.error(res.msg, 5000)
+      message.error(res.msg)
       // (content, [duration], onClose)
       // 50001: 非法的token; 50002: 其他客户端错误; 50003: 认证失败; 50004: 授权失败; 50005: 未找到用户
       if (
@@ -59,7 +59,7 @@ service.interceptors.response.use(
   },
   (error) => {
     console.log('err' + error) // for debug
-    message.error(error.msg, 5000)
+    message.error(error.msg)
     // Message({
     //   message: error.message,
     //   type: 'error',

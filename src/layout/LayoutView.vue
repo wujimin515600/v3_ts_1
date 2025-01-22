@@ -55,7 +55,7 @@ const backHome = () => {
 }
 
 .logo {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 40px;
   width: 100%;
 }

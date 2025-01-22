@@ -77,7 +77,7 @@ const handleButtonClick = (menu: HeaderRightMenu) => {
   }
 }
 const handleMenuClick = (e: Event) => {
-  console.log('click', e)
+  // console.log('click', e)
 }
 
 const layout = () => {
@@ -100,14 +100,14 @@ const layout = () => {
 
   .content {
     height: 100%;
-    border: 1px solid blue;
+    // border: 1px solid blue;
     flex: 1;
   }
   .user {
     margin-left: auto;
 
     // width: 200px;
-    border: 1px solid red;
+    // border: 1px solid red;
   }
 
   .demo-dropdown-wrap :deep(.ant-dropdown-button) {

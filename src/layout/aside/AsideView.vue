@@ -31,7 +31,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { provide, ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import MenuItem from './MenuItem.vue'
 import IconView from '@/components/IconView.vue'
@@ -61,29 +61,36 @@ const init = () => {
   if (selectKey) {
     selectedKeys.value = [selectKey]
   }
+
 }
 // 设置页面缓存数据
 init()
 
 const onOpenChange = (keys: string[]) => {
-  const keyArr = []
-  if (keys.length > 0) {
-    //取最后一项，最后一项才是你当前展开的菜单
-    keyArr.push(keys[keys.length - 1])
-  }
-  openKeys.value = keyArr
-  menuStore.setOpenKeys(keyArr)
+  // const keyArr = []
+  // if (keys.length > 0) {
+  //   //取最后一项，最后一项才是你当前展开的菜单
+  //   keyArr.push(keys[keys.length - 1])
+  // }
+  // openKeys.value = keyArr
+  // console.log('keyarr', keyArr)
+  // menuStore.setOpenKeys(keyArr)
 }
 
 const handleClick = (item: MenuItemInfo) => {
-  // 缓存高亮状态
-  selectedKeys.value = [item.key]
-  menuStore.setSelectedKey(item.key)
   //判断是否是一级菜单，一级菜单item.keyPath长度为1，二级菜单item.keyPath长度为2，清空二级菜单展开数组openKeys
   if (item.keyPath.length == 1) {
     menuStore.setOpenKeys([])
     openKeys.value = []
   }
 }
+
+// watch
+watch(
+      () => menuStore.selectedKey,
+      () => init(),
+      { immediate: true }
+    );
+
 </script>
 <style scoped></style>

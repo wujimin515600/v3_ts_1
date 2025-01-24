@@ -26,3 +26,17 @@ export const getTokens = (nodes) => {
     });
     return tokens;
 }
+
+ /**
+  * @description:  依赖版本信息对象转数组对象
+  * @param {Object} json -- 版本信息
+  * @return {Array} 数组对象
+  */
+ export const getDependencies = (json = {}) => {
+    return Object.keys(json).map(item => {
+        return {
+            title: item,
+            desc: json[item]
+        }
+    })
+ }

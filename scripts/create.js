@@ -1,6 +1,6 @@
 import fs from 'fs-extra'
 import MarkdownIt from 'markdown-it'
-import { getTokens } from './utils.js'
+import { getTokens, getDependencies } from './utils.js'
 
 const md = new MarkdownIt({
   typographer: true
@@ -47,11 +47,11 @@ const createData = async (markdownContent, pageJson = {}) => {
     },
     dependencies: {
       title: '生产环境依赖',
-      list: pageJson.dependencies
+      list: getDependencies(pageJson.dependencies)
     },
     devDependencies: {
       title: '开发环境依赖',
-      list: pageJson.devDependencies
+      list: getDependencies(pageJson.devDependencies)
     }
   }
   fs.outputJsonSync('./src/data/doc.json', doc)

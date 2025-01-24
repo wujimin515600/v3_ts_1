@@ -1,16 +1,16 @@
 # v3_ts_1
 
-#### 介绍
+## 介绍
 
 vue3+ts+pinia+vue-router+ant-design-vue
 
 This template should help get you started developing with Vue 3 in Vite.
 
-#### 软件架构
+## 软件架构
 
 vue3+ts+pinia+vue-router+ant-design-vue
 
-#### 安装教程
+## 安装教程
 
 ## Project Setup
 
@@ -64,3 +64,11 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## 项目地址
+
+[项目地址](git@github.com:wujimin515600/v3_ts_1.git)
+
+## 项目预览
+
+[项目预览](https://wujimin515600.github.io/v3_ts_1)

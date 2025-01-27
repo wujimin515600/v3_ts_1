@@ -43,7 +43,6 @@ jobs:
         run: |
           echo "Current working directory: $(pwd)"
           node -e "console.log('Current working directory via Node.js: ' + process.cwd())"
-          node -e "console.log('Current working directory via Node.js: ' + ls)"
       - name: Build
         run: npm run build
       - name: Setup Pages

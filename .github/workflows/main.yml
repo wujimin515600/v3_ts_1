@@ -37,6 +37,10 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
+      - name: Print current working directory
+        run: |
+          echo "Current working directory: $(pwd)"
+          node -e "console.log('Current working directory via Node.js: ' + process.cwd())"
       - name: Build
         run: npm run build
       - name: Setup Pages

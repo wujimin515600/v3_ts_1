@@ -1,15 +1,11 @@
 import fs from 'fs-extra'
 import MarkdownIt from 'markdown-it'
 import { getTokens, getDependencies } from './utils.js'
-import path from 'path';
+// import path from 'path';
 
 const workspace = process.env.GITHUB_WORKSPACE;
 if (typeof process !== 'undefined' && process.versions != null && process.versions.node != null) {
   console.log('Running in Node.js environment');
-  console.log('workspace',workspace)
-  // console.log(process.cwd())
-  // const filepath = path.dirname('README.MD')
-  // console.log('filepath', filepath)
 } else {
   console.log('Not running in Node.js environment');
 }
@@ -18,20 +14,14 @@ const md = new MarkdownIt({
   typographer: true
 })
 const main = () => {
-  // return
   const rootPath = process.cwd();
-  console.log('pwd', rootPath)
-  const readPath = rootPath + '/README.md'
-  const pathJson = rootPath + '/package.json'
-  // console.log('__dirname:', path.__dirname);
-  // eslint-disable-next-line no-undef
-
+  const readPath = `${rootPath}/README.md`;
+  const pathJson = `${rootPath}/package.json`;
 
   const mdContent = getContent(readPath)
   const pageJson = getContent(pathJson, 'json')
-  //console.log('mdContent', mdContent)
-  //console.log('pageJson', pageJson)
-   createData(mdContent, pageJson, rootPath)
+
+  createData(mdContent, pageJson, rootPath)
 }
 
 const getContent = (path, type = 'string') => {
@@ -75,8 +65,7 @@ const createData = async (markdownContent, pageJson = {}, rootPath) => {
       list: getDependencies(pageJson.devDependencies)
     }
   }
-  const filePath = `${rootPath}/src/data/doc.json`;
-  fs.outputJsonSync(filePath, doc)
+  fs.outputJsonSync(`${rootPath}/src/data/doc.json`, doc)
 }
 
 try {

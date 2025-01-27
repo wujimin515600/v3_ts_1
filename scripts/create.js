@@ -21,7 +21,7 @@ const main = () => {
   // return
   const rootPath = process.cwd();
   console.log('pwd', rootPath)
-  const readPath = workspace + '/README.MD'
+  const readPath = workspace + '/README.md'
   const pathJson = workspace + '/package.json'
   // console.log('__dirname:', path.__dirname);
   // eslint-disable-next-line no-undef

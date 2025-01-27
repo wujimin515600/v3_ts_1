@@ -35,20 +35,6 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-      - name: Find and read important-data.txt
-        run: |
-          # Set the path to the file
-          FILE_PATH="$GITHUB_WORKSPACE/README.md"
-
-          # Check if the file exists
-          if [ -f "$FILE_PATH" ]; then
-            echo "File exists. Reading contents..."
-            # Read and output the file contents
-            cat "$FILE_PATH"
-          else
-            echo "File does not exist."
-            exit 1
-          fi
       - name: Install dependencies
         run: npm install
       - name: List files in the root directory

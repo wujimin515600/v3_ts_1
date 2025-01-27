@@ -1,16 +1,34 @@
 import fs from 'fs-extra'
 import MarkdownIt from 'markdown-it'
 import { getTokens, getDependencies } from './utils.js'
+import path from 'path';
+
+if (typeof process !== 'undefined' && process.versions != null && process.versions.node != null) {
+  console.log('Running in Node.js environment');
+  // console.log(process.cwd())
+  // const filepath = path.dirname('README.MD')
+  // console.log('filepath', filepath)
+} else {
+  console.log('Not running in Node.js environment');
+}
 
 const md = new MarkdownIt({
   typographer: true
 })
 const main = () => {
-  const path = './README.MD'
-  const pathJson = './package.json'
-  const mdContent = getContent(path)
+  // return
+  const rootPath = process.cwd();
+  const readPath = rootPath + '/README.MD'
+  const pathJson = rootPath + '/package.json'
+  // console.log('__dirname:', path.__dirname);
+  // eslint-disable-next-line no-undef
+
+
+  const mdContent = getContent(readPath)
   const pageJson = getContent(pathJson, 'json')
-  createData(mdContent, pageJson)
+  console.log('mdContent', mdContent)
+  console.log('pageJson', pageJson)
+  // createData(mdContent, pageJson)
 }
 
 const getContent = (path, type = 'string') => {

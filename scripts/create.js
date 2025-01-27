@@ -6,7 +6,7 @@ import path from 'path';
 const workspace = process.env.GITHUB_WORKSPACE;
 if (typeof process !== 'undefined' && process.versions != null && process.versions.node != null) {
   console.log('Running in Node.js environment');
-  console.log('workspace','workspace')
+  console.log('workspace',workspace)
   // console.log(process.cwd())
   // const filepath = path.dirname('README.MD')
   // console.log('filepath', filepath)

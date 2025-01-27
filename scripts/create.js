@@ -21,24 +21,24 @@ const main = () => {
   // return
   const rootPath = process.cwd();
   console.log('pwd', rootPath)
-  const readPath = workspace + '/README.md'
-  const pathJson = workspace + '/package.json'
+  const readPath = rootPath + '/README.md'
+  const pathJson = rootPath + '/package.json'
   // console.log('__dirname:', path.__dirname);
   // eslint-disable-next-line no-undef
 
 
   const mdContent = getContent(readPath)
   const pageJson = getContent(pathJson, 'json')
-  console.log('mdContent', mdContent)
-  console.log('pageJson', pageJson)
-  // createData(mdContent, pageJson)
+  //console.log('mdContent', mdContent)
+  //console.log('pageJson', pageJson)
+   createData(mdContent, pageJson, rootPath)
 }
 
 const getContent = (path, type = 'string') => {
   if (type === 'string') return fs.readFileSync(path, 'utf8')
   return fs.readJsonSync(path)
 }
-const createData = async (markdownContent, pageJson = {}) => {
+const createData = async (markdownContent, pageJson = {}, rootPath) => {
   const tokens = md.parse(markdownContent, {})
   const data = getTokens(tokens)
   const address = data.findIndex((item) => item.tag === 'h2' && item.content.includes('项目地址'))
@@ -75,7 +75,8 @@ const createData = async (markdownContent, pageJson = {}) => {
       list: getDependencies(pageJson.devDependencies)
     }
   }
-  fs.outputJsonSync('./src/data/doc.json', doc)
+  const filePath = `${rootPath}/src/data/doc.json`;
+  fs.outputJsonSync(filePath, doc)
 }
 
 try {

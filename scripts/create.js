@@ -18,6 +18,7 @@ const md = new MarkdownIt({
 const main = () => {
   // return
   const rootPath = process.cwd();
+  console.log('pwd', rootPath)
   const readPath = rootPath + '/README.MD'
   const pathJson = rootPath + '/package.json'
   // console.log('__dirname:', path.__dirname);

@@ -69,7 +69,7 @@ service.interceptors.response.use(
   }
 )
 export interface Params {
-  [x: string]: string | undefined
+  [x: string]: string | undefined | number
 }
 /**
  * get方法，对应get请求
@@ -94,6 +94,7 @@ export function get(url: string, params: Params) {
  * post方法，对应post请求
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
+ * @return {Promise}
  */
 export function post(url: string, params: Params) {
   return new Promise((resolve, reject) => {

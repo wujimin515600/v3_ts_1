@@ -4,6 +4,8 @@ import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-rou
 import UserView from '@/views/user/UserHome.vue'
 import addUserView from '@/views/user/UserAdd.vue'
 import temlateView from '@/views/base/BaseModule.vue'
+// import Ul from '@/views/user/UserList.vue'
+// import cu from '@/views/user/'
 import { basicRoutes } from './routes'
 import { setPageGuard } from './guard'
 import { addChildrenRoute } from '@/utils/addRouter'
@@ -41,7 +43,7 @@ const UserRouter: RouteRecordRaw[] = [
           title: '添加用户',
           icon: 'UsergroupAddOutlined'
         }
-      }
+      },
     ],
     meta: {
       title: '用户管理',
@@ -72,8 +74,31 @@ const templateRouter: RouteRecordRaw[] = [
   }
 ]
 
+const menuRouter: RouteRecordRaw[] = [
+  {
+    path: 'menu',
+    name: 'Menu',
+    children: [
+      {
+        path: 'menulist',
+        name: 'Menulist',
+        component: import('@/views/menu/MenuList.vue'),
+        meta: {
+          title: '菜单列表',
+          icon: 'UserOutlined'
+        }
+      }
+    ],
+    meta: {
+      title: '菜单管理',
+      icon: 'UserOutlined'
+    }
+  }
+]
+
 addChildrenRoute(router, '/', UserRouter[0])
 addChildrenRoute(router, '/', templateRouter[0])
+addChildrenRoute(router, '/', menuRouter[0])
 
 setPageGuard(router)
 export default router

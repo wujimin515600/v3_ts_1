@@ -21,10 +21,10 @@
             <a-button type="primary" @click="handleSearch">查询</a-button>
           </a-form-item>
         </a-form>
-        <a-button type="primary" @click="showModal('create')">
+        <!-- <a-button type="primary" @click="showModal('create')">
           <template #icon><plus-outlined /></template>
           新建用户
-        </a-button>
+        </a-button> -->
       </div>
   
       <!-- 用户表格 -->
@@ -68,7 +68,7 @@
   <script setup lang="ts">
   import { ref, reactive, onMounted } from 'vue'
   import { useUserStore } from '@/stores/userStore'
-  import UserFormModal from './components/UserFormModal.vue'
+//   import UserFormModal from '@/components/UserFormModal.vue'
   import type { User, UserQueryParams } from '@/utils'
   import type { TableProps } from 'ant-design-vue'
 import Modal from 'ant-design-vue/es/modal/Modal'

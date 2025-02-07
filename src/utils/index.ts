@@ -1,3 +1,4 @@
+import type { Params } from "@/api/request"
 
 export interface User {
   userId: number
@@ -40,4 +41,12 @@ export const getOpenKeys = (path: string = ''): Array<any>=> {
   const arr = path.split('/').filter(item => item);
   if (arr.length === 1) return [];
   return [capitalizeEachWord(arr[0])];
+}
+
+
+export interface UserQueryParams extends Params {
+  username?: string
+  role?: string
+  page: number
+  pageSize: number
 }

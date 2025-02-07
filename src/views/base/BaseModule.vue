@@ -1,62 +1,37 @@
-<!-- <template>
-    <div>基础模块</div>
-  </template>
-  
-  <script setup lang='ts'>
-  import { ref, reactive } from 'vue'
-  
-  </script>
-  
-  
-  <style lang='scss' scoped>
-  
-  </style> -->
-
 <template>
-  <div>基础模块</div>
-  <a-collapse v-model:activeKey="activeKey" accordion>
-    <!-- <a-collapse-panel key="1" header="This is panel header 1">
-        <p>{{ text }}</p>
-      </a-collapse-panel>
-      <a-collapse-panel key="2" header="This is panel header 2" :disabled="false">
-        <p>{{ text }}</p>
-      </a-collapse-panel>
-      <a-collapse-panel key="3" header="This is panel header 3">
-        <p>{{ text }}</p>
-      </a-collapse-panel> -->
-    <a-collapse-panel v-for="item in res" :key="item.name" :header="item.name">
-      <p>{{ item.name }}</p>
-    </a-collapse-panel>
-  </a-collapse>
+  <a-list item-layout="horizontal" :data-source="data">
+    <template #renderItem="{ item }">
+      <a-form :model="formState" :label-col="lay.labelCol" :wrapper-col="lay.wrapperCol">
+        <a-form-item :label="item.name">
+          <a-input v-model:value="formState.name" />
+        </a-form-item>
+      </a-form>
+    </template>
+  </a-list>
 </template>
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
-const activeKey = ref([])
-const res = reactive([
+import { reactive, type UnwrapRef } from 'vue'
+import InputView from '@/components/base/InputView.vue'
+interface DataItem {
+  title: string,
+  [x:string]: string
+}
+interface FormState {
+  name: string
+}
+const data: DataItem[] = [
   {
-    name: '表单',
-    children: [
-      {
-        name: '单行输入',
-        value: ''
-      }
-    ]
-  }
-])
-const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
+    title: '搜索',
+    type: 'search',
+    name: 'name'
+  },
+]
+const formState: UnwrapRef<FormState> = reactive({
+  name: ''
+})
+
+const lay = reactive({
+  labelCol: { style: { width: '150px' } },
+  wrapperCol: { span: 14 }
+})
 </script>
-<!-- <script lang="ts">
-  import { defineComponent, ref } from 'vue';
-  
-  export default defineComponent({
-    setup() {
-      const activeKey = ref([]);
-      const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
-  
-      return {
-        activeKey,
-        text,
-      };
-    },
-  });
-  </script> -->

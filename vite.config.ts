@@ -12,7 +12,6 @@ import { resolve } from 'node:path'
 export default defineConfig(({ mode }) => {
   //获取各种环境下的对应的变量
   const env = loadEnv(mode, process.cwd())
-  console.log('mode', mode, env)
   return {
     base: env.VITE_PUBLIC_PATH, // 这里设置部署根目录
     // build: {

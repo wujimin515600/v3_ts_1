@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import TableView from '@/components/TableView.vue'
-import { getUser } from '@/api'
+import { getUsers } from '@/api'
 import { onMounted, provide, ref } from 'vue'
 import type { User } from '@/utils'
 
@@ -14,7 +14,7 @@ interface Response {
 const list = ref<User[]>([])
 provide('userTableData', list)
 onMounted(async () => {
-  const res: Response = (await getUser({})) as Response
+  const res: Response = (await getUsers({})) as Response
   list.value = res.items
 })
 </script>

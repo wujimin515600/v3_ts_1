@@ -33,7 +33,7 @@ export const useUserStore = defineStore(
       loading.value = true
       try {
         const res: { items: User[]} = await getUser(params)
-        console.log('store', res)
+        // console.log('store', res)
         userList.value = res.items
         pagination.value = {
           current: params.page,
@@ -63,7 +63,7 @@ export const useUserStore = defineStore(
       })
     }
 
-    return { data, setUser, removeUser, getUsers, deleteUser, updateUserStatus }
+    return { data,userList,loading, pagination, setUser, removeUser, getUsers, deleteUser, updateUserStatus }
   },
   {
     persist: true

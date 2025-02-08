@@ -1,5 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { getUsers, Login } from './modules'
+import { getMenus, getUsers, Login } from './modules'
 
 const mocks: MockMethod[] = [
   {
@@ -11,6 +11,11 @@ const mocks: MockMethod[] = [
     url: '/api/users',
     method: 'post',
     response: getUsers
+  },
+  {
+    url: '/api/getMenus',
+    method: 'post',
+    response: getMenus
   }
 ]
 

@@ -27,12 +27,28 @@ export const getUsers = async (params: Params) => {
 }
 
 export const deleteUser = async (params: Params) => {
-  return {msg: '删除成功'}
+  return {msg: '删除成功', data: []}
 }
 export const updateUser = async (params: Params) => {
-  return { msg: '修改成功'}
+  return { msg: '修改成功', data: []}
 }
 
 export const createUser = async (params: Params) => {
-  return {msg: '创建成功'}
+  return {msg: '创建成功', data: []}
+}
+
+export const getMenu = async() => {
+  // return {msg: '创建成功', data: []}
+  return await post('/getMenus', {})
+}
+
+export const deleteMenu = async (params: Params) => {
+  return {msg: '删除成功', data: []}
+}
+export const updateMenu = async (params: Params) => {
+  return { msg: '修改成功', data: []}
+}
+
+export const createMenu = async (params: Params) => {
+  return {msg: '创建成功', data: []}
 }

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@vue/compiler-sfc": "^3.5.13",
     "ant-design-vue": "^4.2.1",
     "axios": "^1.7.9",
     "fs-extra": "^11.3.0",

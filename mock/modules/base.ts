@@ -51,6 +51,7 @@ export function menus() {
         menu_parent: '',
         menu_path: 'Layout',
         id: 0,
+        key: 1,
         children: [
           {
             menu_no: 'menu',
@@ -60,7 +61,8 @@ export function menus() {
             menu_visible: 1,
             menu_parent: '',
             menu_path: 'Layout',
-            id: 0
+            id: 0,
+            key: 11,
           }
         ]
       },
@@ -72,7 +74,8 @@ export function menus() {
         menu_visible: 1,
         menu_path: 'Layout',
         menu_parent: '',
-        id: 1
+        id: 1,
+        key: 2
       }
     ]
   }

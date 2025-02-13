@@ -65,7 +65,17 @@ const templateRouter: RouteRecordRaw[] = [
           title: '模块列表',
           icon: 'UserOutlined'
         }
-      }
+      },
+      {
+        path: 'createPage',
+        name: 'CreatePage',
+        component: import('@/views/base/CreatePage.vue'),
+        meta: {
+          title: '创建组件',
+          icon: 'UserOutlined'
+        }
+      },
+      
     ],
     meta: {
       title: '基础模块',

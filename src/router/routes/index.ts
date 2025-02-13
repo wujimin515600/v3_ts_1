@@ -57,9 +57,24 @@ const NotFoundRouter: RouteRecordRaw[] = [
   }
 ]
 
+const PublicRouter: RouteRecordRaw[] = [
+  { 
+    path: '/dynamic/:id',
+    name: 'Dynamic',
+    component: import('@/views/base/TextView.vue'),
+    // props: route => ({ pageId: route.params.pageId }),
+    props: true,
+    meta: {
+      title: '创建组件1',
+      icon: 'UserOutlined'
+    }
+  }
+]
+
 export const basicRoutes: RouteRecordRaw[] = [
   ...LayoutRouter,
   ...LoginRouter,
-  ...NotFoundRouter
+  ...NotFoundRouter,
+  ...PublicRouter
   // ...UserRouter
 ]

@@ -10,7 +10,7 @@
 import { ref, reactive, onMounted, provide } from 'vue'
 import type { User, UserQueryParams } from '@/utils'
 import type { TableProps } from 'ant-design-vue'
-import Modal from 'ant-design-vue/es/modal/Modal'
+// import Modal from 'ant-design-vue/es/modal/Modal'
 import FormView from '@/components/base/BaseFormView.vue'
 import DataView from '@/components/base/BaseTableView.vue'
 import { useMenuSystemStore } from '@/stores/menuSystemStore'
@@ -45,50 +45,11 @@ const queryParams = reactive<UserQueryParams>({
   pageSize: 10
 })
 
-// 表格列配置
-const columns: TableProps['columns'] = [
-  {
-    title: '用户名',
-    dataIndex: 'username',
-    key: 'username'
-  },
-  {
-    title: '邮箱',
-    dataIndex: 'email',
-    key: 'email'
-  },
-  {
-    title: '角色',
-    dataIndex: 'role',
-    key: 'role',
-    filters: [
-      { text: '管理员', value: 'admin' },
-      { text: '普通用户', value: 'user' }
-    ]
-  },
-  {
-    title: '状态',
-    dataIndex: 'status',
-    key: 'status',
-    slots: { customRender: 'status' }
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createTime',
-    key: 'createTime',
-    sorter: true
-  },
-  {
-    title: '操作',
-    key: 'action',
-    slots: { customRender: 'action' }
-  }
-]
+
 
 // 初始化加载数据
 onMounted(() => {
   store.fetchMenus(queryParams)
-  console.log(0,store.menus, store.columns)
 })
 
 // 处理表格变化
@@ -99,12 +60,6 @@ const handleTableChange: TableProps['onChange'] = (pag, filters, sorter) => {
 //   store.getUsers(queryParams)
 }
 
-// 显示模态框
-const showModal = (mode: 'create' | 'edit', record?: User) => {
-  modalMode.value = mode
-  currentUser.value = record || null
-  modalVisible.value = true
-}
 
 // 删除用户
 const handleDelete = (id: string) => {

@@ -50,3 +50,8 @@ export interface UserQueryParams extends Params {
   page: number
   pageSize: number
 }
+
+export interface Item {
+  id: string
+  [x: string]: string | number
+}

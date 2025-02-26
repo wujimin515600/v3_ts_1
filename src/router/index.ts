@@ -4,6 +4,7 @@ import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-rou
 import UserView from '@/views/user/UserHome.vue'
 import addUserView from '@/views/user/UserAdd.vue'
 import temlateView from '@/views/base/BaseModule.vue'
+import DictionaryBase from '@/views/base/DictionaryBase.vue'
 // import Ul from '@/views/user/UserList.vue'
 // import cu from '@/views/user/'
 import { basicRoutes } from './routes'
@@ -75,7 +76,15 @@ const templateRouter: RouteRecordRaw[] = [
           icon: 'UserOutlined'
         }
       },
-      
+      {
+        path: 'dictioary',
+        name: 'Dictioary',
+        component: DictionaryBase,
+        meta: {
+          title: '字典管理',
+          icon: 'UserOutlined'
+        }
+      },
     ],
     meta: {
       title: '基础模块',

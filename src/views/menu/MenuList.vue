@@ -1,7 +1,7 @@
 <template>
   <a-card>
     <FormView />
-    <DataView />
+    <DataView type="menu" />
     <a-table></a-table>
   </a-card>
 </template>
@@ -12,14 +12,15 @@ import type { User, UserQueryParams } from '@/utils'
 import type { TableProps } from 'ant-design-vue'
 // import Modal from 'ant-design-vue/es/modal/Modal'
 import FormView from '@/components/base/BaseFormView.vue'
-import DataView from '@/components/base/BaseTableView.vue'
+import DataView from '@/components/BaseTableView.vue'
 import { useMenuSystemStore } from '@/stores/menuSystemStore'
 
 const store = useMenuSystemStore()
-const modalVisible = ref(false)
-const modalMode = ref<'create' | 'edit'>('create')
-const currentUser = ref<User | null>(null)
+// const modalVisible = ref(false)
+// const modalMode = ref<'create' | 'edit'>('create')
+// const currentUser = ref<User | null>(null)
 
+console.log('store', store)
 provide('menuList', {
   search: [
     {
@@ -35,7 +36,7 @@ provide('menuList', {
   ]
 })
 
-provide('menuSearch', () => {
+provide('Search', () => {
   console.log('menuSearch')
 })
 provide('menuTable', store)

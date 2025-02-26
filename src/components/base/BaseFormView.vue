@@ -41,7 +41,7 @@ const menuList = inject('menuList', {})
 const formState = reactive<FormState>({
       title: ''
     });
-const handleSearch = inject('menuSearch', () => {})
+const handleSearch = inject('Search', () => {})
 
 
 

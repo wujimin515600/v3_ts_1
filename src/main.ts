@@ -4,6 +4,8 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import persist from 'pinia-plugin-persistedstate'
 import * as antdIcons from '@ant-design/icons-vue'
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/reset.css';
 
 import App from './App.vue'
 import router from './router'
@@ -20,6 +22,7 @@ app.config.globalProperties.$antdIcons = antdIcons
 
 store.use(persist)
 app.use(store)
+app.use(Antd)
 
 app.use(router)
 app.mount('#app')

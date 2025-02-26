@@ -1,4 +1,4 @@
-import { menus } from './base'
+import { menus, dictionary } from './base'
 import { returnOption } from './dto'
 import { createUserList, users } from './user'
 
@@ -36,4 +36,13 @@ export const getMenus = ({ headers }) => {
   }
 
   return { data: menus, ...returnOption['success'] }
+}
+
+export const getDictionary = ({ headers }) => {
+  const { token } = headers
+  if (!token) {
+    return returnOption['invainToken']
+  }
+
+  return { data: dictionary, ...returnOption['success'] }
 }

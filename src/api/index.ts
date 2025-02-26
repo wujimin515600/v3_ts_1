@@ -52,3 +52,19 @@ export const updateMenu = async (params: Params) => {
 export const createMenu = async (params: Params) => {
   return {msg: '创建成功', data: []}
 }
+
+export const getDictionary = async() => {
+  // return {msg: '创建成功', data: []}
+  return await post('/getDictionary', {})
+}
+
+export const deleteDictionary = async (params: Params) => {
+  return {msg: '删除成功', data: []}
+}
+export const updateDictionary = async (params: Params) => {
+  return { msg: '修改成功', data: []}
+}
+
+export const createDictionary = async (params: Params) => {
+  return {msg: '创建成功', data: []}
+}

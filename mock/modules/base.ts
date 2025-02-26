@@ -80,15 +80,26 @@ export function menus() {
     ]
   }
 }
-//   {
-//         userId: '@id',
-//         username: '@name',
-//         password: '888888',
-//         // 'age|18-30': 1,
-//         avatar: Mock.Random.image(),
-//         desc: '用户',
-//         roles: [''],
-//         buttons: ['cuser.detail'],
-//         routes: [],
-//         token: 'Token'
-//       }
+
+export const dictionary = () => {
+  return {
+    title: [
+      {
+        title: '字典名称',
+        dataIndex: 'dic_name'
+      },
+
+      {
+        title: '备注',
+        dataIndex: 'dic_desc'
+      },
+    ],
+    data: [
+      {
+        key: 1,
+        dic_name: 'dic_name',
+        dic_desc: ''
+      }
+    ]
+  }
+}

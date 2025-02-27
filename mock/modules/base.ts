@@ -88,16 +88,38 @@ export const dictionary = () => {
         title: '字典名称',
         dataIndex: 'dic_name'
       },
-
+      {
+        title: '上级菜单',
+        dataIndex: 'dic_parent'
+      },
+      {
+        title: '序号',
+        dataIndex: 'dic_no'
+      },
       {
         title: '备注',
         dataIndex: 'dic_desc'
+      },
+      {
+        title: '操作',
+        dataIndex: 'operation',
       },
     ],
     data: [
       {
         key: 1,
-        dic_name: 'dic_name',
+        id: 123,
+        dic_name: '新建菜单',
+        dic_no: 1,
+        children: [
+          {
+            key: 11,
+            dic_name: 'dic_name',
+            dic_parent: '',
+            dic_desc: ''
+          }
+        ],
+        dic_parent: '',
         dic_desc: ''
       }
     ]

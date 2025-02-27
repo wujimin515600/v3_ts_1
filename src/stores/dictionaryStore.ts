@@ -27,7 +27,7 @@ export const useDictionaryStore = defineStore(
     const fetchDictionary = async (params: { page: any; pageSize: any }) => {
       try {
         const { data, title } = await getDictionary()
-        //   console.log('store', res)
+          console.log('store', data)
         dictionary.value = data
         columns.value = title
         pagination.value = {

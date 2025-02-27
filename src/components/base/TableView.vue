@@ -1,44 +1,99 @@
-<template> 
-  <!-- <template #=""></template> -->
-  <a-table :columns="columns" :data-source="tableData" bordered>
-    <template #bodyCell="{ column, text }">
-      <template v-if="column.dataIndex === 'username'">
-        <a>{{ text }}</a>
+<template>
+  <a-table
+    :columns="columns"
+    :data-source="data"
+    :loading="loading"
+    :pagination="pagination"
+    @change="$emit('handleTableChange')"
+    :row-selection="rowSelection"
+    bordered
+  >
+    <template #bodyCell="{ column, record }">
+      <template v-if="type === 'dictionary'"> </template>
+      <template v-if="type === 'menu'">
+        <template v-if="column.dataIndex === 'menu_type'">
+          <span>
+            <a-tag :color="record.menu_type === '目录' ? 'cyan' : 'green'">
+              {{ record.menu_type }}
+            </a-tag>
+          </span>
+        </template>
+        <template v-if="column.dataIndex === 'menu_visible'">
+          <span>
+            <a-tag :color="record.menu_visible === 1 ? 'purple' : 'blue'">
+              {{ record.menu_visible === 1 ? '显示' : '隐藏' }}
+            </a-tag>
+          </span>
+        </template>
       </template>
-      <template v-if="column.dataIndex === 'avatar'">
-        <a-avatar :src="text" />
+      <!-- 公共  start-->
+      <template v-if="column.dataIndex === 'operation'">
+        <a-space>
+          <a-button
+            type="primary"
+            size="small"
+            ghost
+            @click="$emit('showModal', 'edit', record, columns)"
+            >编辑
+          </a-button>
+          <a-button type="primary" size="small" danger ghost @click="$emit('showConfirm', record)"
+            >删除</a-button
+          >
+        </a-space>
       </template>
+      <!-- 公共  end-->
     </template>
-    <template #title>用户列表</template>
-    <template #footer>Footer</template>
   </a-table>
 </template>
-<script lang="ts" setup>
-import { inject } from 'vue'
 
-import { type User } from '@/utils'
+<script setup lang="ts">
+import { ref, reactive, watch } from 'vue'
 
-const columns = [
-  {
-    title: '昵称',
-    dataIndex: 'username'
+const props = defineProps({
+  columns: {
+    type: Array,
+    deafult: () => [],
+    required: true
   },
-  {
-    title: '角色',
-    className: 'column-money',
-    dataIndex: 'desc'
+  data: {
+    type: Array,
+    deafult: () => [],
+    required: true
   },
-  {
-    title: '头像',
-    dataIndex: 'avatar'
+  loading: {
+    type: Boolean,
+    deafult: () => false,
+    required: true
+  },
+  pagination: {
+    type: Object,
+    default: () => {}
+  },
+  type: {
+    type: String,
+    default: () => 'menu'
   }
-]
+})
 
-const tableData = inject<User[]>('userTableData')
+const rowSelection = ref({
+  checkStrictly: false
+  //   onChange: (selectedRowKeys: (string | number)[], selectedRows: DataItem[]) => {
+  //     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+  //   },
+  //   onSelect: (record: DataItem, selected: boolean, selectedRows: DataItem[]) => {
+  //     console.log(record, selected, selectedRows)
+  //   },
+  //   onSelectAll: (selected: boolean, selectedRows: DataItem[], changeRows: DataItem[]) => {
+  //     console.log(selected, selectedRows, changeRows)
+  //   }
+})
+
+// const handleTableChange: TableProps['onChange'] = (pag, filters, sorter) => {
+//   // queryParams.page = pag.current!
+//   // queryParams.pageSize = pag.pageSize!
+//   // queryParams.role = filters.role?.[0]
+//   // store.getUsers(queryParams)
+// }
 </script>
-<style scoped>
-th.column-money,
-td.column-money {
-  text-align: right !important;
-}
-</style>
+
+<style lang="scss" scoped></style>

@@ -39,7 +39,7 @@ provide('menuList', {
 provide('Search', () => {
   console.log('menuSearch')
 })
-provide('menuTable', store)
+provide('menuTable', {data: store.menus,...store})
 // 查询参数
 const queryParams = reactive<UserQueryParams>({
   page: 1,

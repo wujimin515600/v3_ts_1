@@ -1,41 +1,19 @@
 <template>
   <a-card>
-    <a-table
-      :columns="menuTable.columns"
-      :data-source="menuTable.menus"
+    <TableView
+      :data="menuTable.data"
       :loading="menuTable.loading"
+      :columns="menuTable.columns"
       :pagination="menuTable.pagination"
-      @change="handleTableChange"
-      :row-selection="rowSelection"
-      bordered
+      @showModal="showModal"
+      @showConfirm="showConfirm"
+      @handleTableChange="handleTableChange"
+      :type="type"
     >
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'menu_type'">
-          <span>
-            <a-tag :color="record.menu_type === '目录' ? 'cyan' : 'green'">
-              {{ record.menu_type }}
-            </a-tag>
-          </span>
-        </template>
-        <template v-if="column.dataIndex === 'menu_visible'">
-          <span>
-            <a-tag :color="record.menu_visible === 1 ? 'purple' : 'blue'">
-              {{ record.menu_visible === 1 ? '显示' : '隐藏' }}
-            </a-tag>
-          </span>
-        </template>
-        <template v-if="column.dataIndex === 'operation'">
-          <a-space>
-            <a-button type="primary" size="small" ghost @click="showModal('edit', record ,menuTable.columns)">编辑
-            </a-button>
-            <a-button type="primary" size="small" danger ghost @click="showConfirm(record)">删除</a-button>
-          </a-space>
-        </template>
-      </template>
-    </a-table>
+    </TableView>
   </a-card>
   <!-- <template v-if="open"> -->
-    <BaseModal :status="open" :data="modalData" destroyOnClose @message-event="handleMessage" />
+  <BaseModal :status="open" :data="modalData" destroyOnClose @message-event="handleMessage" />
   <!-- </template> -->
 </template>
 
@@ -47,43 +25,37 @@ import type { TableProps } from 'ant-design-vue'
 import Modal from 'ant-design-vue/es/modal/Modal'
 import BaseModal from './BaseModal.vue'
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
+import TableView from '@/components/base/TableView.vue'
 
-interface DataItem {
+export interface DataItem {
   menu_type: string
   children?: DataItem[]
 }
 
-
+defineProps({
+  type: {
+    type: String,
+    default: ''
+  }
+})
 
 const store = useUserStore()
-const open = ref<boolean>(false);
+const open = ref<boolean>(false)
 const modalData = reactive({
-    title: '',
-    data: {},
-    // menuTitle: []
+  title: '',
+  data: {}
+  // menuTitle: []
 })
 
 const menuTable = inject('menuTable')
+console.log('menuTable', menuTable)
 // console.log('menuTable', menuTable)
-
-const rowSelection = ref({
-  checkStrictly: false,
-//   onChange: (selectedRowKeys: (string | number)[], selectedRows: DataItem[]) => {
-//     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
-//   },
-//   onSelect: (record: DataItem, selected: boolean, selectedRows: DataItem[]) => {
-//     console.log(record, selected, selectedRows)
-//   },
-//   onSelectAll: (selected: boolean, selectedRows: DataItem[], changeRows: DataItem[]) => {
-//     console.log(selected, selectedRows, changeRows)
-//   }
-})
 
 
 // 初始化加载数据
 onMounted(() => {
   store.getUsers(queryParams)
-//   console.log('user', store.userList)
+  //   console.log('user', store.userList)
 })
 
 // 查询参数
@@ -102,17 +74,17 @@ const handleTableChange: TableProps['onChange'] = (pag, filters, sorter) => {
 
 // 显示模态框
 const showModal = (mode: 'delete' | 'edit', record: DataItem, columns: DataItem) => {
-    Object.assign(modalData, {
-        title: mode,
-        data: record,
-        menuTitle: columns
-    })
-    open.value = true
-    console.log('column', columns, modalData)
+  Object.assign(modalData, {
+    title: mode,
+    data: record,
+    menuTitle: columns
+  })
+  open.value = true
+  console.log('column', columns, modalData)
 }
 
 const handleMessage = () => {
-    open.value = false
+  open.value = false
 }
 
 const showConfirm = (record: DataItem) => {
@@ -123,14 +95,13 @@ const showConfirm = (record: DataItem) => {
     onOk() {
       return new Promise((resolve, reject) => {
         // 删除操作
-        setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-      }).catch(() => console.log('Oops errors!'));
+        setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+      }).catch(() => console.log('Oops errors!'))
     },
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onCancel() {},
-  });
-};
-
+    onCancel() {}
+  })
+}
 </script>
 
 <style lang="scss" scoped></style>

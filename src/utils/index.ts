@@ -55,3 +55,18 @@ export interface Item {
   id: string
   [x: string]: string | number
 }
+
+export const getRandomId = () =>{
+
+}
+
+export enum ModalTitle {
+  ADD = '新增',
+  DELETE = '擅长',
+  EDIT = '编辑'
+}
+
+export enum ControlType {
+  MENU = 'menu', //菜单页
+  DIC = 'Dictioary', //字典页
+}

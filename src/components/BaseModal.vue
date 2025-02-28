@@ -93,7 +93,8 @@ const props = defineProps({
 
 const titleInfo: Title = {
   edit: '编辑',
-  delete: '删除'
+  delete: '删除',
+  add: '新增'
 }
 
 const getTitle = (title: string = '') => {
@@ -107,7 +108,7 @@ const modalData = ref<Title>({})
 watch(
   props,
   (newValue) => {
-    console.log('newValue', newValue)
+    console.log('watch1', newValue)
     open.value = newValue.status
     modalData.value = newValue.data.data
     menuTitle.value = newValue.data.menuTitle

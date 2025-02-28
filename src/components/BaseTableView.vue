@@ -74,13 +74,14 @@ const handleTableChange: TableProps['onChange'] = (pag, filters, sorter) => {
 
 // 显示模态框
 const showModal = (mode: 'delete' | 'edit', record: DataItem, columns: DataItem) => {
+  console.log('column', columns, modalData, record)
   Object.assign(modalData, {
     title: mode,
     data: record,
     menuTitle: columns
   })
   open.value = true
-  console.log('column', columns, modalData)
+  
 }
 
 const handleMessage = () => {

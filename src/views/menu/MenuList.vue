@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, provide, ref } from 'vue'
+import { reactive, onMounted, provide, ref, watch } from 'vue'
 import { ControlType, ModalTitle, type UserQueryParams } from '@/utils'
 // import Modal from 'ant-design-vue/es/modal/Modal'
 import FormView from '@/components/BaseFormView.vue'
@@ -40,8 +40,8 @@ const modalData = reactive({
 // 获取所有路由配置信息
 const routes = useRouter()
   .getRoutes()
-  .filter((item) => item.name === 'Layout')[0]?.children
-// console.log(routes)
+  .filter((item) => item.name === 'Layout')
+// console.log('routes',routes)
 provide('menuList', {
   search: [
     {
@@ -70,12 +70,13 @@ const queryParams = reactive<UserQueryParams>({
 // 初始化加载数据
 onMounted(() => {
   store.fetchMenus(queryParams)
+  // console.log('store.columns', store.columns)
 })
 
 const addMenu = () => {
   const obj = {
-    id: 0,
-    key: 1,
+    // id: 0,
+    // key: 1,
     menu_name: '',
     menu_no: '',
     menu_parent: '',
@@ -92,6 +93,8 @@ const addMenu = () => {
     type: ControlType['MENU'],
     routes: routes
   })
+
+  // console.log('modalData', modalData, store.columns)
 
 }
 const handleMessage = () => {

@@ -21,7 +21,7 @@ export interface MenuItem {
 // menu_parent: '',
 // menu_path: 'Layout',
 // id: 0,
-export const useMenuSystemStore = defineStore('menu', () => {
+export const useMenuSystemStore = defineStore('v3_ts_1_menu_data', () => {
   const menus = ref<MenuItem[]>([])
   const columns = ref<MenuItem[]>([])
   const showCreateDialog = ref(false)
@@ -37,7 +37,6 @@ export const useMenuSystemStore = defineStore('menu', () => {
   const fetchMenus = async (params: { page: any; pageSize: any }) => {
     try {
       const { data, title } = await getMenu()
-    //   console.log('store', res)
       menus.value = data
       columns.value = title
       pagination.value = {
@@ -96,4 +95,6 @@ export const useMenuSystemStore = defineStore('menu', () => {
     updateMenu,
     deleteMenu
   }
+},{
+  persist: true
 })

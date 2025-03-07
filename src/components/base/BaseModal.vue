@@ -2,7 +2,7 @@
   <a-modal v-model:open="open" :title="title" @ok="handleOk" @cancel="handleCancel" width="1000px">
     <!-- <template> -->
     <a-form
-      :model="formState"
+      :model="modalData"
       name="basic"
       :label-col="{ span: 8 }"
       :wrapper-col="{ span: 16 }"
@@ -11,7 +11,7 @@
       @finishFailed="onFinishFailed"
     >
       <a-row :gutter="24">
-        <template v-for="item in titles" :key="item.dataIndex">
+        <template v-for="(item, index) in titles" :key="item.dataIndex +'_'+ index">
           <template v-if="control === ControlType['MENU']">
             <a-col :span="12">
               <template v-if="item.dataIndex === 'menu_visible'">
@@ -46,32 +46,28 @@
                 </a-form-item>
               </template>
 
-              <template v-else-if="item.dataIndex='menu_parent'">
+              <template v-else-if="item.dataIndex==='menu_parent'">
                 <a-form-item :label="item.title" :name="item.title">
-                  <a-select v-model:value="modalData[item.dataIndex]" placeholder="选择类型">
-                    <a-select-option value="目录">目录</a-select-option>
-                    <a-select-option value="菜单">菜单</a-select-option>
-                  </a-select>
-
-                  <!-- <a-select v-model:value="value" style="width: 200px" @change="handleChange">
-                  <a-select-opt-group>
-                    <template #label>
-                      <span>
-                        <user-outlined />
-                        Manager
-                      </span>
+                  <a-select v-model:value="modalData[item.dataIndex]" placeholder="选择父级菜单" :virtual="false">
+                    <template v-for="(route, num) in routes" :key="`-${num}`">
+                      <a-select-opt-group v-if="route.children && route.children.length > 0">
+                        <template #label>
+                          <span>
+                            {{ route.meta?.title }}
+                          </span>
+                        </template>
+                        <a-select-option v-for="(routeItem) in route.children" :value="routeItem.path" :key="routeItem.name">{{ routeItem.meta?.title }}</a-select-option>
+                      </a-select-opt-group>
+                      <a-select-option v-else :value="route.path">{{ route.meta?.title }}</a-select-option>
                     </template>
-                    <a-select-option value="jack">Jack</a-select-option>
-                    <a-select-option value="lucy">Lucy</a-select-option>
-                  </a-select-opt-group>
-                  <a-select-opt-group label="Engineer">
-                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
-                    <a-select-option value="Yiminghe1">yiminghe1</a-select-option>
-                  </a-select-opt-group>
-                </a-select> -->
+                  </a-select>
                 </a-form-item>
               </template>
-
+              <template v-else-if="item.dataIndex==='menu_path'">
+                <a-form-item :label="item.title" :name="item.title">
+                  <a-input addon-before="src/views" v-model:value="modalData[item.dataIndex]" />
+                </a-form-item>
+              </template>
               <template v-else-if="item.dataIndex !== 'operation'">
                 <a-form-item :label="item.title" :name="item.title">
                   <a-input v-model:value="modalData[item.dataIndex]" />
@@ -89,6 +85,7 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
 import { ControlType } from '@/utils'
+import type { RouteRecordRaw } from 'vue-router'
 
 interface Title {
   [x: string]: string | number
@@ -127,7 +124,7 @@ const titles = ref<Title[]>([])
 const modalData = ref<Title>({})
 const title = ref('标题')
 const control = ref('menu') //页面类型
-const routes = ref([]);
+const routes = ref<RouteRecordRaw[]>([]);
 
 watch(
   props,
@@ -144,7 +141,11 @@ watch(
 )
 
 const handleOk = (e: MouseEvent) => {
-  // console.log('handleOk', e)
+  const obj = {
+        id: 0, // 随机
+    key: 1, // 
+  }
+  console.log('handleOk', e, modalData)
   open.value = false
   handleMessage({ status: false })
 }

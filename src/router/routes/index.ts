@@ -11,6 +11,9 @@ const LayoutRouter: RouteRecordRaw[] = [
     name: 'Layout',
     redirect: '/home',
     component: HomeView,
+    meta: {
+      title: 'Layout'
+    },
     children: [
       {
         path: 'home',
